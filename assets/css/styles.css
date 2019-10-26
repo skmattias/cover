@@ -1,0 +1,11 @@
+:root {
+    --green: #006930;
+    --light-green: #37935E;
+}
+
+#uploaded-image-div {
+    background-image:url('');
+    background-size:cover;
+    background-position: center;
+    height: 250px;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Omslagsbild</title>
+
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="node_modules/ion-rangeslider/css/ion.rangeSlider.min.css" type="text/css" rel="stylesheet" />
+
+    <link href="assets/css/styles.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div id="green-filter">
+                        <div class="card i">
+                            <div class="card-body i">
+                                <div class="w-100" id="uploaded-image-div">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <form method="post" action="#" id="#">
+                                    <div class="form-group">
+                                        <input type="file" class="" onchange="setImage(event)">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+                                    <label class="btn btn-light active" onclick="setAspectRatio(16, 9);">
+                                        <input type="radio" checked>
+                                        FB-event<br />16:9
+                                    </label>
+                                    <label class="btn btn-light" onclick="setAspectRatio(4, 3);">
+                                        <input type="radio">
+                                        FB-post<br />4:3
+                                    </label>
+                                    <label class="btn btn-light" onclick="setAspectRatio(2, 1);">
+                                        <input type="radio">
+                                        TW-post<br />2:1
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="control-label">Filterintensitet (%):</label>
+                                <input type="text" class="opacity-slider" value="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <!-- <div id="omslag">
+        <div style="background: green;">
+            <img class="img-fluid" src="assets/img/CSMSFIN.jpg" style="opacity: .5;">
+        </div>
+    </div>
+    <button class="btn btn-danger" onclick="hh(document.getElementById("omslag"));" ;>old</button>
+    <div id="resultDiv"></div> -->
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
+    <!-- <script src="node_modules/html2canvas-render-offscreen/dist/html2canvas.min.js"></script> -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/file-saver/dist/FileSaver.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        var widthRatio = 1;
+        var heightRatio = 1;
+
+        function setAspectRatio(w, h) {
+            widthRatio = w;
+            heightRatio = h;
+            var width = $("#uploaded-image-div").width();
+            var height = width / w * h;
+            $("#uploaded-image-div").height(height);
+        }
+
+        window.onresize = function () {
+            setAspectRatio(widthRatio, heightRatio);
+        }
+
+        function setFilter(opacity) {
+            $("#uploaded-image-div").css("opacity", opacity);
+        }
+
+        window.onload = function () {
+            $(".opacity-slider").ionRangeSlider({
+                min: 0,
+                max: 100,
+                from: 50,
+                grid: true,
+
+                onChange: function (data) {
+                    setFilter(1 - (data.from / 100));
+                }
+            });
+            setAspectRatio(16, 9);
+
+            setFilter(0.5);
+        }
+
+    </script>
+</body>
+
+</html>

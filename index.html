@@ -8,35 +8,46 @@
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="node_modules/ion-rangeslider/css/ion.rangeSlider.min.css" type="text/css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="fonts/stylesheet.css" type="text/css" />
     <link href="assets/css/styles.css" type="text/css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="lato">
     <br />
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <div id="green-filter">
+                <div class="image-capture" id="image-capture">
+
+                    <!-- The image with the green filter -->
+                    <div id="green-filter">
                         <div class="card i">
                             <div class="card-body i">
                                 <div class="w-100" id="uploaded-image-div">
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Text overlay -->
+                    <div class="overlay chunkfive-ex" id="overlay-text"></div>
+
                 </div>
             </div>
             <div class="col-4">
                 <div class="card">
                     <div class="card-body">
+
                         <div class="row">
                             <div class="col-12">
-                                <form method="post" action="#" id="#">
-                                    <div class="form-group">
-                                        <input type="file" class="" onchange="setImage(event)">
-                                    </div>
-                                </form>
+                                <button class="btn btn-primary w-100">
+                                    <input type="file" id="file-input" onchange="setImage(event)" />
+                                    Ladda upp en bild
+                                </button>
                             </div>
                         </div>
+                        <br />
+
                         <div class="row">
                             <div class="col-12">
                                 <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
@@ -56,17 +67,25 @@
                             </div>
                         </div>
                         <br />
+
                         <div class="row">
                             <div class="col-12">
                                 <label class="control-label">Filterintensitet (%):</label>
                                 <input type="text" class="opacity-slider" value="" />
                             </div>
                         </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-12">
+                                <input class="form-control" type="text" placeholder="Bildtext" id="overlay-text-input"
+                                       onkeyup="setText();"/>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
     </div>
@@ -97,36 +116,33 @@
         var widthRatio = 1;
         var heightRatio = 1;
 
-        function setAspectRatio(w, h) {
-            widthRatio = w;
-            heightRatio = h;
-            var width = $("#uploaded-image-div").width();
-            var height = width / w * h;
-            $("#uploaded-image-div").height(height);
-        }
-
         window.onresize = function () {
             setAspectRatio(widthRatio, heightRatio);
-        }
-
-        function setFilter(opacity) {
-            $("#uploaded-image-div").css("opacity", opacity);
+            setTextPosition();
         }
 
         window.onload = function () {
+            // Enable the slider.
             $(".opacity-slider").ionRangeSlider({
                 min: 0,
                 max: 100,
                 from: 50,
                 grid: true,
+                skin: "round",
 
                 onChange: function (data) {
                     setFilter(1 - (data.from / 100));
                 }
             });
+
+            // Set the image aspect ratio.
             setAspectRatio(16, 9);
 
+            // Set the filter opacity.
             setFilter(0.5);
+
+            // Set the text position.
+            setTextPosition();
         }
 
     </script>

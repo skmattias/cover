@@ -52,6 +52,12 @@ function setText() {
     setTextPosition();
 }
 
+// Set the font size. Keeps it constant relative to the image.
+function setFontSize() {
+    var imageHeight = $('#image-capture').height();
+    $('.overlay').css('font-size', imageHeight/7 + 'px');
+}
+
 function hh(element) {
 
     window.scrollTo(0, 0);

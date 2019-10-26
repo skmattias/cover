@@ -120,6 +120,7 @@
 
         window.onresize = function () {
             setAspectRatio(widthRatio, heightRatio);
+            setFontSize();
             setTextPosition();
         }
 
@@ -142,6 +143,9 @@
 
             // Set the filter opacity.
             setFilter(0.5);
+            
+            // Set the font size.
+            setFontSize();
 
             // Set the text position.
             setTextPosition();

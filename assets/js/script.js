@@ -9,6 +9,7 @@ function setAspectRatio(w, h) {
     var height = width / w * h;
     $("#uploaded-image-div").height(height);
 
+    setFontSize();
     setTextPosition();
 }
 
@@ -49,13 +50,14 @@ function setText() {
     var input = $('#overlay-text-input').val();
     $('#overlay-text').html(input);
 
+    setFontSize();
     setTextPosition();
 }
 
 // Set the font size. Keeps it constant relative to the image.
 function setFontSize() {
-    var imageHeight = $('#image-capture').height();
-    $('.overlay').css('font-size', imageHeight/7 + 'px');
+    var imageWidth = $('#image-capture').width();
+    $('.overlay').css('font-size', imageWidth/14 + 'px');
 }
 
 function hh(element) {

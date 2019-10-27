@@ -7,20 +7,17 @@
 .lato {
   font-family: "latoregular", sans-serif;
 }
-
 .lato-light {
   font-family: "latolight", sans-serif;
 }
-
 .lato-bold {
   font-family: "latobold", sans-serif;
 }
-
 .chunkfive-ex {
   font-family: "chunkfive_exregular", serif;
 }
 
-/* The image */
+/* The background image */
 #uploaded-image-div {
   background-image: url("");
   background-size: cover;
@@ -35,16 +32,20 @@
   left: 15px;
   top: 0;
   height: 100%;
+  /* Full width, - 15px margins to the left and right */
   width: calc(100% - 30px);
+  /* Hide the ugly default upload image-button */
   opacity: 0;
 }
 
-/* The text overlay */
+/* The text overlay, relative position so that the text and the logo can be
+   positioned absolute on top of it */
 .image-capture {
   position: relative;
 }
 
-.overlay {
+/* The overlay text: transparent text cutout on a white background */
+#overlay-text {
   position: absolute;
   top: 100px;
   left: 100px;
@@ -56,4 +57,24 @@
   text-align: center;
   /* Transparent text */
   mix-blend-mode: screen;
+}
+
+/* The overlay logo at the bottom right of the image */
+#overlay-logo {
+  /* The image */
+  background-image: url("");
+  background-size: 100% 100%;
+  background-position: center;
+  height: 10em;
+  width: 20em;
+
+  /* The positioning */
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
+
+/* Margin on top of each row that follows another row */
+.row+.row {
+  margin-top: 1em;
 }

@@ -7,9 +7,11 @@
     <meta name="author" content="Mattias Jonsson">
     <link rel="icon" href="assets/img/c.png">
 
+    <!-- Bootstrap and the slider used for the green filter opacity -->
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="node_modules/ion-rangeslider/css/ion.rangeSlider.min.css" type="text/css" rel="stylesheet" />
 
+    <!-- Centerstudents font and general style sheet -->
     <link rel="stylesheet" href="fonts/stylesheet.css" type="text/css" />
     <link href="assets/css/styles.css" type="text/css" rel="stylesheet" />
 </head>
@@ -23,35 +25,40 @@
 
                     <!-- The image with the green filter -->
                     <div id="green-filter">
+                        <!-- Card divs just for making it look nice before an image is added -->
                         <div class="card i">
                             <div class="card-body i">
-                                <div class="w-100" id="uploaded-image-div">
-                                </div>
+                                <div class="w-100" id="uploaded-image-div"></div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Text overlay -->
-                    <div class="overlay chunkfive-ex" id="overlay-text"></div>
+                    <div class="chunkfive-ex" id="overlay-text"></div>
+
+                    <!-- Logo -->
+                    <div id="overlay-logo"></div>
 
                 </div>
                 <br />
             </div>
-            
+
+            <!-- Right settings pane -->
             <div class="col-xs-12 col-lg-4">
                 <div class="card">
                     <div class="card-body">
 
+                        <!-- Upload background image button -->
                         <div class="row">
                             <div class="col-12">
                                 <button class="btn btn-primary w-100">
                                     <input type="file" id="file-input" onchange="setImage(event)" />
-                                    Ladda upp en bild
+                                    Ladda upp bakgrundsbild
                                 </button>
                             </div>
                         </div>
-                        <br />
 
+                        <!-- Aspect ratio settings -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
@@ -70,23 +77,43 @@
                                 </div>
                             </div>
                         </div>
-                        <br />
 
+                        <!-- Filter opacity slider -->
                         <div class="row">
                             <div class="col-12">
                                 <label class="control-label">Filterintensitet (%):</label>
                                 <input type="text" class="opacity-slider" value="" />
                             </div>
                         </div>
-                        <br />
 
+                        <!-- Overlay text input -->
                         <div class="row">
                             <div class="col-12">
                                 <input class="form-control" type="text" placeholder="Bildtext" id="overlay-text-input"
-                                       oninput="setText();"/>
+                                    oninput="setText();" />
                             </div>
                         </div>
-                        
+
+                        <!-- Logo select list -->
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="">Avdelningslogga:</label>
+                                <select class="custom-select" onchange="updateLogo(this.value);">
+                                    <option value="0" selected>Ingen</option>
+                                    <option value="1">Nationell</option>
+                                    <option value="2">Göteborg</option>
+                                    <option value="3">Linköping</option>
+                                    <option value="4">Luleå</option>
+                                    <option value="5">Skåne</option>
+                                    <option value="6">Stockholm</option>
+                                    <option value="7">Umeå</option>
+                                    <option value="8">Uppsala</option>
+                                    <option value="9">Växjö</option>
+                                    <option value="10">Örebro</option>
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -98,6 +125,7 @@
     <br />
     <br />
     <br />
+    <!-- // TODO -->
     <!-- <div id="omslag">
         <div style="background: green;">
             <img class="img-fluid" src="assets/img/CSMSFIN.jpg" style="opacity: .5;">
@@ -107,11 +135,16 @@
     <div id="resultDiv"></div> -->
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
-    <!-- <script src="node_modules/html2canvas-render-offscreen/dist/html2canvas.min.js"></script> -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/file-saver/dist/FileSaver.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
+
+    <!-- The tool used to create an actual image from a div -->
+    <script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
+
+    <!-- // TODO  -->
+    <script src="node_modules/file-saver/dist/FileSaver.min.js"></script>
+
+    <!-- The slider used to set the green filter opacity -->
     <script src="node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
 
     <script src="assets/js/script.js"></script>
@@ -120,6 +153,9 @@
         var widthRatio = 1;
         var heightRatio = 1;
 
+        /// On window resize, update the image size, set the font size to match
+        /// the image size, and update the text position to be in the middle of
+        /// the image.
         window.onresize = function () {
             setAspectRatio(widthRatio, heightRatio);
             setFontSize();
@@ -127,7 +163,8 @@
         }
 
         window.onload = function () {
-            // Enable the slider.
+
+            // Enable the green filter opacity slider.
             $(".opacity-slider").ionRangeSlider({
                 min: 0,
                 max: 100,
@@ -140,12 +177,12 @@
                 }
             });
 
-            // Set the image aspect ratio.
+            // Set the image aspect ratio. Defaults to 16:9.
             setAspectRatio(16, 9);
 
-            // Set the filter opacity.
+            // Set the filter opacity. Defaults to 50%.
             setFilter(0.5);
-            
+
             // Set the font size.
             setFontSize();
 

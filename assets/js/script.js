@@ -27,6 +27,22 @@ function setImage(event) {
     $('#green-filter').css('background-color', green);
 }
 
+/// Set the bottom right logo.
+function updateLogo(value) {
+    var logoDiv = $('#overlay-logo');
+    
+    var imageName = "assets/img/" + value + ".png";
+    var image = new Image();
+
+    image.src = imageName;
+    image.onload = function() {
+        logoDiv.width(200);
+        logoDiv.height(200/this.width * this.height);
+    }
+
+    logoDiv.css('background-image', 'url(' + imageName + ')');
+}
+
 /// Set filter opacity.
 function setFilter(opacity) {
     $("#uploaded-image-div").css("opacity", opacity);
@@ -57,7 +73,7 @@ function setText() {
 // Set the font size. Keeps it constant relative to the image.
 function setFontSize() {
     var imageWidth = $('#image-capture').width();
-    $('.overlay').css('font-size', imageWidth/14 + 'px');
+    $('#overlay-text').css('font-size', imageWidth/14 + 'px');
 }
 
 function hh(element) {

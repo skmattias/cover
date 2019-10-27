@@ -47,12 +47,13 @@ function updateLogo(value) {
 /// Update the bottom right logo size.
 function setLogoSize(image) {
     var imageDiv = $('#image-capture');
-    var imageWidth = imageDiv.width();
-  
     var logoDiv = $('#overlay-logo');
+
+    // Set the width of the logo relative to the width of the whole image.
+    var imageWidth = imageDiv.width();
     var width = imageWidth/3.5;
 
-    // If an image was sent as an argument.
+    // Set the height of the logo as to not stretch the image in any direction.
     var height = 0;
     if (typeof image !== "undefined") {
         height = width/image.width * image.height;
@@ -60,6 +61,7 @@ function setLogoSize(image) {
         height = width/logoDiv.width() * logoDiv.height();
     }
 
+    // Apply the new size.
     logoDiv.width(width);
     logoDiv.height(height);
 }
@@ -97,6 +99,12 @@ function setFontSize() {
     $('#overlay-text').css('font-size', imageWidth/14 + 'px');
 }
 
+/// Set the gaussian blur on the background image.
+function setBlur(size) {
+    $('#green-filter').css('filter', 'blur(' + size + 'px)');
+}
+
+// TODO open the file in a new tab or save it to the computer.
 function hh(element) {
 
     window.scrollTo(0, 0);
@@ -108,8 +116,6 @@ function hh(element) {
         width: useWidth,
         height: useHeight,
     }).then(function(canvas) {
-        // console.log(canvas);
-        // saveAs(canvas.toDataURL(), 'file-name.png');
         document.body.appendChild(canvas);
     });
 }

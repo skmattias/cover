@@ -36,11 +36,32 @@ function updateLogo(value) {
 
     image.src = imageName;
     image.onload = function() {
-        logoDiv.width(200);
-        logoDiv.height(200/this.width * this.height);
+        setLogoSize(this);
+        // logoDiv.width(200);
+        // logoDiv.height(200/this.width * this.height);
     }
 
     logoDiv.css('background-image', 'url(' + imageName + ')');
+}
+
+/// Update the bottom right logo size.
+function setLogoSize(image) {
+    var imageDiv = $('#image-capture');
+    var imageWidth = imageDiv.width();
+  
+    var logoDiv = $('#overlay-logo');
+    var width = imageWidth/3.5;
+
+    // If an image was sent as an argument.
+    var height = 0;
+    if (typeof image !== "undefined") {
+        height = width/image.width * image.height;
+    } else {
+        height = width/logoDiv.width() * logoDiv.height();
+    }
+
+    logoDiv.width(width);
+    logoDiv.height(height);
 }
 
 /// Set filter opacity.

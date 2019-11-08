@@ -19,6 +19,9 @@ function setImage(event) {
     var getImagePath = URL.createObjectURL(event.target.files[0]);
     $('#uploaded-image-div').css('background-image', 'url(' + getImagePath + ')');
 
+    // TODO 
+    $('#overlay-text').css('background-image', 'url' + getImagePath + ')');
+
     // Remvoe the border.
     $('.i').removeClass('card');
     $('.i').removeClass('card-body');
@@ -37,11 +40,10 @@ function updateLogo(value) {
     image.src = imageName;
     image.onload = function() {
         setLogoSize(this);
-        // logoDiv.width(200);
-        // logoDiv.height(200/this.width * this.height);
     }
 
     logoDiv.css('background-image', 'url(' + imageName + ')');
+    $('#overlay-text').css('background-image', 'url(' + imageName + ')');
 }
 
 /// Update the bottom right logo size.
@@ -109,13 +111,23 @@ function hh(element) {
 
     window.scrollTo(0, 0);
 
-    var useWidth = $('#omslag').width();
-    var useHeight = $('#omslag').height();
+    var useWidth = $('#image-capture').width();
+    var useHeight = $('#image-capture').height();
 
     html2canvas(element, {
         width: useWidth,
         height: useHeight,
+        allowTaint: true,
     }).then(function(canvas) {
         document.body.appendChild(canvas);
     });
+
+    // domtoimage.toPng(element, {height: 1080, width: 1920}).then(function(dataUrl) {
+    //     var img = new Image();
+    //     img.src = dataUrl;
+    //     document.body.appendChild(img);
+    // })
+    // .catch(function(error) {
+    //     console.error("ånej", error);
+    // });
 }

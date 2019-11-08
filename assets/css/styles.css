@@ -40,7 +40,7 @@
 
 /* The text overlay, relative position so that the text and the logo can be
    positioned absolute on top of it */
-.image-capture {
+#image-capture {
   position: relative;
 }
 
@@ -55,6 +55,7 @@
   font-size: 6vw;
   padding: 0 20px;
   text-align: center;
+
   /* Transparent text */
   mix-blend-mode: screen;
 }

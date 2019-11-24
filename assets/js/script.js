@@ -32,6 +32,7 @@ function setFullSize() {
     setAspectRatio(widthRatio, heightRatio);
     setTextPosition();
     setLogoSize();
+    setBlur(blur);
 }
 
 /// Set the uploaded image.
@@ -264,7 +265,10 @@ function setBottomText() {
 
 /// Set the gaussian blur on the background image.xw
 function setBlur(size) {
-    $("#green-filter").css("filter", "blur(" + size + "px)");
+    blur = size;
+    var greenFilter = $("#green-filter");
+    var blurFactor = greenFilter.width() / 730;
+    greenFilter.css("filter", "blur(" + size*blurFactor + "px)");
 }
 
 // TODO open the file in a new tab or save it to the computer.

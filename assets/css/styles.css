@@ -60,6 +60,36 @@
   mix-blend-mode: screen;
 }
 
+/* The top text above the overlay */
+#top-text {
+  position: absolute;
+  width: fit-content;
+  color: white;
+  font-size: 2vw;
+  display: flex;
+}
+#top-text-text {
+  display: inline-block;
+}
+#top-text-line {
+  flex-grow: 1;
+}
+
+/* The bottom text below the overlay */
+#bottom-text {
+  position: absolute;
+  width: fit-content;
+  color: white;
+  font-size: 2vw;
+  display: flex;
+}
+#bottom-text-text {
+  display: inline-block;
+}
+#bottom-text-line {
+  flex-grow: 1;
+}
+
 /* The overlay logo at the bottom right of the image */
 #overlay-logo {
   /* The image */

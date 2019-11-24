@@ -21,27 +21,43 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-lg-8">
-                <div id="image-capture">
+                <div id="full-image">
+                    <div id="image-capture">
 
-                    <!-- The image with the green filter -->
-                    <div id="green-filter">
-                        <!-- Card divs just for making it look nice before an image is added -->
-                        <div class="card i">
-                            <div class="card-body i">
-                                <div class="w-100" id="uploaded-image-div"></div>
+                        <!-- The image with the green filter -->
+                        <div id="green-filter">
+                            <!-- Card divs just for making it look nice before an image is added -->
+                            <div class="card i">
+                                <div class="card-body i">
+                                    <div class="w-100" id="uploaded-image-div"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Small text above big one -->
+                        <div class="lato" id="top-text-div">
+                            <div id="top-text">
+                                <div id="top-text-text"></div>
+                                <div id="top-text-line"></div>
+                            </div>
+                        </div>
+
+                        <!-- Text overlay -->
+                        <div class="chunkfive-ex" id="overlay-text-div">
+                            <div id="overlay-text"></div>
+                        </div>
+
+                        <!-- Small text below big one -->
+                        <div class="lato" id="bottom-text-div">
+                            <div id="bottom-text">
+                                <div id="bottom-text-line"></div>
+                                <div id="bottom-text-text"></div>
+                            </div>
+                        </div>
+
+                        <!-- Logo -->
+                        <div id="overlay-logo"></div>
                     </div>
-
-                    <!-- Small text above the line -->
-
-                    <!-- Text overlay -->
-                    <div class="chunkfive-ex" id="overlay-text-div">
-                        <div id="overlay-text"></div>
-                    </div>
-
-                    <!-- Logo -->
-                    <div id="overlay-logo"></div>
                 </div>
                 <br />
             </div>
@@ -89,11 +105,27 @@
                             </div>
                         </div>
 
+                        <!-- Top text input -->
+                        <div class="row">
+                            <div class="col-12">
+                                <input class="form-control" type="text" placeholder="Övre text, exempelvis datum" id="top-text-input"
+                                    oninput="setTopText();" />
+                            </div>
+                        </div>
+
                         <!-- Overlay text input -->
                         <div class="row">
                             <div class="col-12">
                                 <input class="form-control" type="text" placeholder="Bildtext" id="overlay-text-input"
                                     oninput="setText();" />
+                            </div>
+                        </div>
+
+                        <!-- Bottom text input -->
+                        <div class="row">
+                            <div class="col-12">
+                                <input class="form-control" type="text" placeholder="Undre text, exempelvis plats" id="bottom-text-input"
+                                    oninput="setBottomText();" />
                             </div>
                         </div>
 
@@ -125,27 +157,17 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn btn-success w-100" onclick="setFullSize()">Skapa bild</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <!-- // TODO -->
-    <!-- <div id="omslag">
-        <div style="background: green;">
-            <img class="img-fluid" src="assets/img/CSMSFIN.jpg" style="opacity: .5;">
-        </div>
-    </div>
-    <button class="btn btn-danger" onclick="hh(document.getElementById("omslag"));" ;>old</button>
-    <div id="resultDiv"></div> -->
-    <button class="btn btn-danger" onclick="hh(document.getElementById('image-capture'));" ;>old</button>
-
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -172,7 +194,6 @@
         /// the image.
         window.onresize = function () {
             setAspectRatio(widthRatio, heightRatio);
-            setFontSize();
             setTextPosition();
             setLogoSize();
         }
@@ -206,14 +227,17 @@
                 }
             });
 
+            // Set texts.
+            setText();
+            setTopText();
+            setBottomText();
+            setBottomText();
+
             // Set the image aspect ratio. Defaults to 16:9.
             setAspectRatio(16, 9);
 
             // Set the filter opacity. Defaults to 50%.
             setFilter(0.5);
-
-            // Set the font size.
-            setFontSize();
 
             // Set the text position.
             setTextPosition();

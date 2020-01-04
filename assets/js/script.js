@@ -269,9 +269,6 @@ function setBlur(size) {
 
 function downloadImage() {
 
-    // Save backup of the old state.
-    var oldBody = $("body").html();
-
     // Spin the button as loading the full size image may take a few seconds.
     $("#downloadImageButton").html("<span class='spinner-border spinner-border-sm'></span>");
 
@@ -299,6 +296,6 @@ function downloadImage() {
             window.saveAs(blob, 'eventbild.png');
 
             // Reset the page.
-            $("body").html(oldBody);
+            location.reload();
         });
 }

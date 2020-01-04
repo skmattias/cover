@@ -13,28 +13,6 @@ function setAspectRatio(w, h) {
     setTextPosition();
 }
 
-function setFullSize() {
-    var html = $("#full-image").html();
-    $("body").html(html);
-
-    // Set div sizes.
-    var image = $("#uploaded-image-div");
-    var capture = $("#image-capture");
-    var greenFilter = $("#green-filter");
-    image.removeClass("w-100");
-    image.width(1920);
-    image.height(1080);
-    capture.width(1920);
-    capture.height(1080);
-    greenFilter.width(1920);
-    greenFilter.height(1080);
-
-    setAspectRatio(widthRatio, heightRatio);
-    setTextPosition();
-    setLogoSize();
-    setBlur(blur);
-}
-
 /// Set the uploaded image.
 function setImage(event) {
     // Set the image.
@@ -271,30 +249,43 @@ function setBlur(size) {
     greenFilter.css("filter", "blur(" + size * blurFactor + "px)");
 }
 
-// ! Transparency doesn't work.
-function s_html2canvas(element) {
-    window.scrollTo(0, 0);
-    var useWidth = $("#image-capture").width();
-    var useHeight = $("#image-capture").height();
-    html2canvas(element, {
-        width: useWidth,
-        height: useHeight,
-        allowTaint: true
-    }).then(function (canvas) {
-        document.body.appendChild(canvas);
-    });
-}
-
 // TODO set unnesecarrily high resolution before downloading, download, and 
 // TODO reset.
-// ! Fonts doesn't work
-function s_dom2image(node) {
 
-    setFullSize();
-    var node2 = document.getElementById('image-capture');
+// TODO set 
 
-    domtoimage.toBlob(node2)
+function downloadImage() {
+
+    // Save backup of the old state.
+    var oldBody = $("body").html();
+
+    // Spin the button as loading the full size image may take a few seconds.
+    $("#downloadImageButton").html("<span class='spinner-border spinner-border-sm'></span>");
+
+    // Make the image large before downloading.
+    var image = $("#uploaded-image-div");
+    var capture = $("#image-capture");
+    var greenFilter = $("#green-filter");
+    var width = 10000;
+    var height = (width / widthRatio) * heightRatio;
+    image.removeClass("w-100");
+    image.width(width);
+    image.height(height);
+    capture.width(width);
+    capture.height(height);
+    greenFilter.width(width);
+    greenFilter.height(height);
+    setAspectRatio(widthRatio, heightRatio);
+    setTextPosition();
+    setLogoSize();
+    setBlur(blur);
+
+    // Download the image.
+    domtoimage.toBlob(document.getElementById('image-capture'))
         .then(function (blob) {
-            window.saveAs(blob, 'my-node.png');
+            window.saveAs(blob, 'eventbild.png');
+
+            // Reset the page.
+            $("body").html(oldBody);
         });
 }

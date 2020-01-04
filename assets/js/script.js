@@ -66,6 +66,14 @@ function setLogoSize(image) {
     // Apply the new size.
     logoDiv.width(width);
     logoDiv.height(height);
+
+    // Set the offset from the corner.
+    var right = 0.02 * imageWidth;
+    logoDiv.css({
+        position: "absolute",
+        bottom: right + "px",
+        right: right + "px"
+    });
 }
 
 /// Set filter opacity.
@@ -94,11 +102,16 @@ function setTextPosition() {
     var imagePos = image.position();
     var mainText = $("#overlay-text");
 
+
     // Main text positions. The 15 is to compensate for strange paddings.
     var mainTextLeft = imagePos.left + image.width() / 2 - mainText.outerWidth() / 2 - 15;
     var mainTextTop = imagePos.top + image.height() / 2 - mainText.outerHeight() / 2;
     mainText.css("left", mainTextLeft + "px");
     mainText.css("top", mainTextTop + "px");
+
+    // Main text right- and left padding.
+    var leftRightPadding = 0.4 * mainText.outerHeight();
+    mainText.css("padding", "0 " + leftRightPadding + "px");
 
     // Top text.
     var topText = $("#top-text");

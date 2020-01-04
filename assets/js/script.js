@@ -254,12 +254,16 @@ function setBottomText() {
     setTextPosition();
 }
 
-/// Set the gaussian blur on the background image.xw
+// Set the gaussian blur on the background image.xw
 function setBlur(size) {
     blur = size;
     var greenFilter = $("#green-filter");
     var blurFactor = greenFilter.width() / 730;
     greenFilter.css("filter", "blur(" + size * blurFactor + "px)");
+}
+
+function setGrayscale(level) {
+    $("#uploaded-image-div").css("filter", "grayscale(" + level * 100 + "%)")
 }
 
 // Download the final image and reload the page.

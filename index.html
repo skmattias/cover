@@ -149,11 +149,18 @@
                             </div>
                         </div>
 
-                        <!-- Filter opacity slider -->
+                        <!-- Effects slider -->
                         <div class="row">
                             <div class="col-12">
                                 <label class="control-label">Blur:</label>
                                 <input type="text" id="blur-slider" value="" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="control-label" data-toggle="tooltip">Gråskala:</label>
+                                <input type="text" id="grayscale-slider" value="" />
                             </div>
                         </div>
 
@@ -171,6 +178,7 @@
     </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/angular/angular.min.js"></script>
 
@@ -203,6 +211,8 @@
 
         window.onload = function () {
 
+            $("[data-toggle='tooltip']").tooltip();
+
             // Enable the green filter opacity slider.
             $("#opacity-slider").ionRangeSlider({
                 min: 0,
@@ -216,7 +226,7 @@
                 }
             });
 
-            // Enable the green filter opacity slider.
+            // Enable the blur slider.
             $("#blur-slider").ionRangeSlider({
                 min: 0,
                 max: 1,
@@ -227,6 +237,20 @@
 
                 onChange: function (data) {
                     setBlur(data.from);
+                }
+            });
+
+            // Enable the grayscale slider.
+            $("#grayscale-slider").ionRangeSlider({
+                min: 0,
+                max: 1,
+                from: 0,
+                step: 0.01,
+                grid: true,
+                skin: "round",
+
+                onChange: function (data) {
+                    setGrayscale(data.from);
                 }
             });
 
@@ -243,7 +267,7 @@
             setFilter(0.5);
 
             // Set the text position.
-            setTextPosition();
+            setTextPosition(); $("#test").tooltip();
         }
 
     </script>

@@ -268,16 +268,14 @@ function setBlur(size) {
     blur = size;
     var greenFilter = $("#green-filter");
     var blurFactor = greenFilter.width() / 730;
-    greenFilter.css("filter", "blur(" + size*blurFactor + "px)");
+    greenFilter.css("filter", "blur(" + size * blurFactor + "px)");
 }
 
-// TODO open the file in a new tab or save it to the computer.
-function hh(element) {
+// ! Transparency doesn't work.
+function s_html2canvas(element) {
     window.scrollTo(0, 0);
-
     var useWidth = $("#image-capture").width();
     var useHeight = $("#image-capture").height();
-
     html2canvas(element, {
         width: useWidth,
         height: useHeight,
@@ -285,17 +283,18 @@ function hh(element) {
     }).then(function (canvas) {
         document.body.appendChild(canvas);
     });
+}
 
-    setAspectRatio(widthRatio, heightRatio);
-    setTextPosition();
-    setLogoSize();
+// TODO set unnesecarrily high resolution before downloading, download, and 
+// TODO reset.
+// ! Fonts doesn't work
+function s_dom2image(node) {
 
-    // domtoimage.toPng(element, {height: 1080, width: 1920}).then(function(dataUrl) {
-    //     var img = new Image();
-    //     img.src = dataUrl;
-    //     document.body.appendChild(img);
-    // })
-    // .catch(function(error) {
-    //     console.error("ånej", error);
-    // });
+    setFullSize();
+    var node2 = document.getElementById('image-capture');
+
+    domtoimage.toBlob(node2)
+        .then(function (blob) {
+            window.saveAs(blob, 'my-node.png');
+        });
 }

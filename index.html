@@ -43,7 +43,7 @@
                         </div>
 
                         <!-- Text overlay -->
-                        <div class="chunkfive-ex" id="overlay-text-div">
+                        <div id="overlay-text-div" style="font-family: 'chunkfive_exregular', serif;">
                             <div id="overlay-text"></div>
                         </div>
 
@@ -108,8 +108,8 @@
                         <!-- Top text input -->
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control" type="text" placeholder="Övre text, exempelvis datum" id="top-text-input"
-                                    oninput="setTopText();" />
+                                <input class="form-control" type="text" placeholder="Övre text, exempelvis datum"
+                                    id="top-text-input" oninput="setTopText();" />
                             </div>
                         </div>
 
@@ -124,8 +124,8 @@
                         <!-- Bottom text input -->
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control" type="text" placeholder="Undre text, exempelvis plats" id="bottom-text-input"
-                                    oninput="setBottomText();" />
+                                <input class="form-control" type="text" placeholder="Undre text, exempelvis plats"
+                                    id="bottom-text-input" oninput="setBottomText();" />
                             </div>
                         </div>
 
@@ -159,7 +159,11 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <button class="btn btn-success w-100" onclick="setFullSize()">Skapa bild</button>
+                                <button class="btn btn-success w-100" onclick="setFullSize()">setFullSize()</button>
+                                <button class="btn btn-success w-100"
+                                    onclick="s_html2canvas(document.getElementById('image-capture'))">html2canvas()</button>
+                                <button class="btn btn-success w-100"
+                                    onclick="s_dom2image(document.getElementById('image-capture'))">dom2image()</button>
                             </div>
                         </div>
                     </div>
@@ -175,13 +179,14 @@
 
     <!-- The tool used to create an actual image from a div -->
     <script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
+    <script src="node_modules/dom-to-image/dist/dom-to-image.min.js"></script>
+
 
     <!-- // TODO  -->
     <script src="node_modules/file-saver/dist/FileSaver.min.js"></script>
 
     <!-- The slider used to set the green filter opacity -->
     <script src="node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
-
 
     <script src="assets/js/script.js"></script>
 

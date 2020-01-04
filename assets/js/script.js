@@ -262,11 +262,7 @@ function setBlur(size) {
     greenFilter.css("filter", "blur(" + size * blurFactor + "px)");
 }
 
-// TODO set unnesecarrily high resolution before downloading, download, and 
-// TODO reset.
-
-// TODO set 
-
+// Download the final image and reload the page.
 function downloadImage() {
 
     // Spin the button as loading the full size image may take a few seconds.

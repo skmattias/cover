@@ -276,7 +276,7 @@ function downloadImage() {
     var image = $("#uploaded-image-div");
     var capture = $("#image-capture");
     var greenFilter = $("#green-filter");
-    var width = 10000;
+    var width = 5000;
     var height = (width / widthRatio) * heightRatio;
     image.removeClass("w-100");
     image.width(width);

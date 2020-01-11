@@ -257,7 +257,7 @@ function setBottomText() {
 // Set the gaussian blur on the background image.xw
 function setBlur(size) {
     blur = size;
-    var greenFilter = $("#green-filter");
+    var greenFilter = $("#uploaded-image-div");
     var blurFactor = greenFilter.width() / 730;
     greenFilter.css("filter", "blur(" + size * blurFactor + "px)");
 }

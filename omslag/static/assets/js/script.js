@@ -34,7 +34,7 @@ function setImage(event) {
 function updateLogo(value) {
     var logoDiv = $("#overlay-logo");
 
-    var imageName = "assets/img/" + value + ".png";
+    var imageName = "/static/assets/img/" + value + ".png";
     var image = new Image();
 
     image.src = imageName;

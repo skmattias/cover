@@ -5,15 +5,17 @@
     <meta charset="utf-8">
     <title>Eventbild</title>
     <meta name="author" content="Mattias Jonsson">
-    <link rel="icon" href="assets/img/c.png">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/img/c.png') }}">
 
     <!-- Bootstrap and the slider used for the green filter opacity -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="node_modules/ion-rangeslider/css/ion.rangeSlider.min.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='node_modules/ion-rangeslider/css/ion.rangeSlider.min.css') }}">
 
     <!-- Centerstudents font and general style sheet -->
-    <link rel="stylesheet" href="fonts/stylesheet.css" type="text/css" />
-    <link href="assets/css/styles.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/stylesheet.css') }}">
 </head>
 
 <body class="lato">
@@ -177,23 +179,45 @@
     </div>
     </div>
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='node_modules/popper.js/dist/umd/popper.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='node_modules/angular/angular.min.js') }}"></script>
+
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='node_modules/html2canvas/dist/html2canvas.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='node_modules/dom-to-image/dist/dom-to-image.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='node_modules/file-saver/dist/FileSaver.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='node_modules/ion-rangeslider/js/ion.rangeSlider.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='assets/js/script.js') }}"></script>
+
+
+
+
+    <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script> -->
 
     <!-- The tool used to create an actual image from a div -->
-    <script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
-    <script src="node_modules/dom-to-image/dist/dom-to-image.min.js"></script>
+    <!-- <script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
+    <script src="node_modules/dom-to-image/dist/dom-to-image.min.js"></script> -->
 
 
     <!-- // TODO  -->
-    <script src="node_modules/file-saver/dist/FileSaver.min.js"></script>
+    <!-- <script src="node_modules/file-saver/dist/FileSaver.min.js"></script> -->
 
     <!-- The slider used to set the green filter opacity -->
-    <script src="node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+    <!-- <script src="node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"></script> -->
 
-    <script src="assets/js/script.js"></script>
+    <!-- <script src="assets/js/script.js"></script> -->
 
     <script>
         var blur = 0.2;

@@ -293,6 +293,21 @@
 
             // Set the text position.
             setTextPosition(); $("#test").tooltip();
+
+            // Check browser.
+            var chrome = navigator.userAgent.indexOf("Chrome") !== -1;
+            var firefox = navigator.userAgent.indexOf("Firefox") !== -1;
+
+            if (!(chrome || firefox)) {
+                $("body").prepend(`
+                <br/>
+                <div class="container">
+                    <div class="alert alert-danger" role="alert">
+                        VARNING: Det verkar som att du använder en webbläsare som inte stödjs. Använd Chrome eller Firefox.
+                    </div>
+                </div>
+                `);
+            }
         }
 
     </script>

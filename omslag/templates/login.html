@@ -51,7 +51,7 @@
             var chrome = navigator.userAgent.indexOf("Chrome") !== -1;
             var firefox = navigator.userAgent.indexOf("Firefox") !== -1;
 
-            if (!(firefox)) {
+            if (!(firefox || chrome)) {
                 $("body").prepend(`
                 <br/>
                 <div class="container">

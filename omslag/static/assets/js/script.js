@@ -38,7 +38,7 @@ function updateLogo(value) {
     var image = new Image();
 
     image.src = imageName;
-    image.onload = function () {
+    image.onload = function() {
         setLogoSize(this);
     };
 
@@ -263,6 +263,7 @@ function setBlur(size) {
 }
 
 function setGrayscale(level) {
+    grayscale = level;
     $("#uploaded-image-div").css("filter", "grayscale(" + level * 100 + "%)")
 }
 
@@ -289,10 +290,11 @@ function downloadImage() {
     setTextPosition();
     setLogoSize();
     setBlur(blur);
+    setGrayscale(grayscale);
 
     // Download the image.
     domtoimage.toBlob(document.getElementById('image-capture'))
-        .then(function (blob) {
+        .then(function(blob) {
             window.saveAs(blob, 'eventbild.png');
 
             // Reset the page.

@@ -13,7 +13,11 @@
                 "FLASK_APP": "omslag",
                 "FLASK_ENV": "development",
                 "FLASK_DEBUG": "1",
-                // "SECRET_KEY": "super secret string"
+                "SECRET_KEY": "super secret string",
+                "OMSLAG_DB_HOST": "localhost",
+                "OMSLAG_DB_USER": "root",
+                "OMSLAG_DB_PASSWORD": "",
+                "OMSLAG_DB_NAME": "omslag"
             },
             "args": [
                 "run",

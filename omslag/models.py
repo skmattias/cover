@@ -4,7 +4,7 @@ import flask
 import flask_login
 from omslag import login_manager
 
-
+# Login manager stuff.
 @login_manager.user_loader
 def load_user(user_name):
     db_user = DatabaseUser(user_name)
@@ -44,12 +44,15 @@ class User(flask_login.UserMixin):
     pass
 
 
+# Database user class mainly to check passwords at login.
 class DatabaseUser:
     def __init__(self, user_name):
-        host = "localhost"
-        user = "root"
-        password = ""
-        db = "omslag"
+        from omslag.config import Config
+
+        host = Config.DB_HOST
+        user = Config.DB_USER
+        password = Config.DB_PASSWORD
+        db = Config.DB_NAME
 
         connection = pymysql.connect(
             host=host,
@@ -78,10 +81,6 @@ class DatabaseUser:
 
         finally:
             connection.close()
-
-    def set_password_hash(self, password):
-        # TODO not implemented.
-        pass
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)

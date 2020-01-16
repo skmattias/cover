@@ -19,16 +19,14 @@
             <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <img class="mx-auto d-block" src="{{ url_for('static', filename='assets/img/c.png') }}" style="width: 30%">
+                        <img class="mx-auto d-block p-2 mb-1" src="{{ url_for('static', filename='assets/img/c.png') }}" style="width: 40%">
                         <div id="fail-login-div"></div>
                         <form action="login" method="POST" id="login-form">
                             <div class="form-group">
-                                <label>Användarnamn</label>
-                                <input class="form-control" type="text" name="user_name" id="user_name" />
+                                <input class="form-control" type="text" name="user_name" id="user_name" placeholder="Användarnamn"/>
                             </div>
                             <div class="form-group ">
-                                <label>Lösenord</label>
-                                <input class="form-control" type="password" name="password" id="password" />
+                                <input class="form-control" type="password" name="password" id="password" placeholder="Lösenord" />
                             </div>
                             <div class="form-gorup">
                                 <button class="btn btn-primary btn-block" onclick="tryLogin()">Logga in</button>

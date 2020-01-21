@@ -9,6 +9,15 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='assets/img/c.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='fonts/stylesheet.css') }}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148828565-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-148828565-2');
+    </script>
 </head>
 
 
@@ -60,7 +69,7 @@
                     </div>
                 </div>
                 `);
-            }            
+            }
         }
 
         function failLogin() {

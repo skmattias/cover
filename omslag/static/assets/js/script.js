@@ -293,11 +293,14 @@ function downloadImage() {
     setGrayscale(grayscale);
 
     // Download the image.
-    domtoimage.toBlob(document.getElementById('image-capture'))
-        .then(function(blob) {
-            window.saveAs(blob, 'eventbild.png');
 
-            // Reset the page.
-            location.reload();
-        });
+    setTimeout(function() {
+        domtoimage.toBlob(document.getElementById('image-capture'))
+            .then(function(blob) {
+                window.saveAs(blob, 'eventbild.png');
+
+                // Reset the page.
+                location.reload();
+            });
+    }, 200);
 }
